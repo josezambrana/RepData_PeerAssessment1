@@ -6,6 +6,16 @@ output:
 ---
 
 ```{r include=FALSE, cache=FALSE}
+if(!require("dplyr")) {
+  install.packages("dplyr")
+}
+if(!require("ggplot2")) {
+  install.packages("ggplot2")
+}
+if(!require("timeDate")) {
+  install.packages("timeDate")
+}
+
 library(dplyr)
 library(ggplot2)
 library(timeDate)
@@ -147,7 +157,7 @@ steps.by.interval <- dataset2 %>%
                      select(steps, interval, day.type) %>%
                      group_by(day.type, interval) %>%
                      summarise_each(funs(mean(.)))
-summary(steps.by.interval)
+
 plot <- ggplot(steps.by.interval, aes(interval, steps)) + geom_line() + facet_grid(day.type~.)
 print(plot)
 ```

@@ -187,20 +187,7 @@ steps.by.interval <- dataset2 %>%
                      select(steps, interval, day.type) %>%
                      group_by(day.type, interval) %>%
                      summarise_each(funs(mean(.)))
-summary(steps.by.interval)
-```
 
-```
-##     day.type      interval          steps        
-##  weekday:288   Min.   :   0.0   Min.   :  0.000  
-##  weekend:288   1st Qu.: 588.8   1st Qu.:  2.047  
-##                Median :1177.5   Median : 28.133  
-##                Mean   :1177.5   Mean   : 38.988  
-##                3rd Qu.:1766.2   3rd Qu.: 61.263  
-##                Max.   :2355.0   Max.   :230.378
-```
-
-```r
 plot <- ggplot(steps.by.interval, aes(interval, steps)) + geom_line() + facet_grid(day.type~.)
 print(plot)
 ```
